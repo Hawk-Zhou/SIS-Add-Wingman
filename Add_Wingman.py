@@ -19,13 +19,13 @@ import ddddocr
 import getpass
 
 targets = [
-    # 'L01-LEC(1179)', # eie
-    'L02-LEC(1268)', #gea
+    'L01-LEC(1179)', # eie
+    # 'L02-LEC(1268)', #gea
     # 'L01-LEC(1141)'
     ]
 
 category = "GEA"
-# category = "EIE"
+category = "EIE"
 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
@@ -176,7 +176,6 @@ def finish_vcode():
 
         response = requests.post('https://sis.cuhk.edu.cn/ValidationServlet',cookies=cookies, params=params, headers=headers)
 
-        print(list())
 
         if response.text.rstrip() == "Y":
             i = driver.find_element(By.ID,"inputValue")
