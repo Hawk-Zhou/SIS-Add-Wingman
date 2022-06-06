@@ -98,7 +98,7 @@ def check_vacant_targets_and_add():
             print("finding",target)
             i = driver.find_element(By.LINK_TEXT,target)
             idx = i.get_attribute("name").split("$")[-1]
-            print("Found Matched:",target,end=" ... ")
+            print("Found a Match:",target,end=" ... ")
 
 
             i = driver.find_element(By.ID, f"win0divDERIVED_CLSRCH_SSR_STATUS_LONG${idx}")
@@ -123,7 +123,7 @@ def select_vacant_tut_and_add() -> bool:
     for e in i:
         alt = e.find_element(By.TAG_NAME,'img')
         alt = alt.get_attribute('alt')
-        print("tut ",e.get_attribute('id')[:-1], '...', alt)
+        print("tut ",e.get_attribute('id')[-1], '...', alt)
         if alt == "Open":
             id = e.get_attribute("id").split("$$")[-1]
             radio = driver.find_element(By.ID,f"SSR_CLS_TBL_R1$sels${id}$$0")
