@@ -21,6 +21,7 @@ import getpass
 targets = [
     # 'L01-LEC(1179)', # eie
     'L02-LEC(1268)', #gea
+    # 'L01-LEC(1141)'
     ]
 
 category = "GEA"
@@ -60,7 +61,11 @@ def wait_processing():
     time.sleep(0.05)
 
 def refresh_search_result():
-    i = driver.find_element(By.ID,"DERIVED_SSS_ENR_SSS_SHOW_ALL")
+    i = driver.find_element(By.ID,"CLASS_SRCH_WRK2_SSR_PB_MODIFY")
+    i.click()
+    i.click()
+    wait_processing()
+    i = driver.find_element(By.ID,"CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH")
     i.click()
 
 def check_vacant_targets() -> str:
@@ -240,17 +245,20 @@ i.click()
 wait_processing()
 i = driver.find_element(By.LINK_TEXT,'View All Sections')
 i.click()
+wait_processing()
+
+
 
 # loop till target is available
 while 1:
-    refresh_search_result()
-    wait_processing()
     id = check_vacant_targets_and_add()
     if id:
         winsound.MessageBeep()
         print("going for", id)
         wait_processing()
         break
+    refresh_search_result()
+    wait_processing()
 
 select_vacant_tut_and_add()
 time.sleep(0.05) # defensive
